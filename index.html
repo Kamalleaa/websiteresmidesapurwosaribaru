@@ -34,13 +34,19 @@
 </head>
 <body>
 
-    <!-- HEADER -->
-  <header>
+<header>
   <div class="logo">
     <h1>Desa Purwosari Baru</h1>
     <p>Kecamatan Tamban, Kabupaten Barito Kuala, Kalimantan Selatan</p>
   </div>
-  <nav>
+
+  <!-- Hamburger Menu Button -->
+  <div class="menu-toggle" id="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav id="nav-menu">
     <ul>
       <li><a href="#welcome">Beranda</a></li>
       <li><a href="#sejarah">Sejarah</a></li>
@@ -49,7 +55,7 @@
       <li><a href="#demografi">Demografi</a></li>
       <li><a href="#fasilitas">Fasilitas</a></li>
       <li><a href="#galeri">Galeri</a></li>
-      <li><a href="#footer">Kontak</a></li>
+      <li><a href="#kontak">Kontak</a></li>
     </ul>
   </nav>
 </header>
@@ -60,6 +66,9 @@
         <div class="welcome-text animate-on-scroll">
             <h1>Selamat Datang,</h1>
             <h2>Di Desa Purwosari Baru</h2>
+            <h3>
+              Sebuah desa dengan kekayaan alam, budaya, dan kehidupan masyarakat yang harmonis
+            </h3>
         </div>
         <div class="welcome-video">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" 
@@ -145,7 +154,7 @@
      <div class="statistik-box">
     <div class="demografi-counters animate-on-scroll">
         <div class="counter-box">
-            <span class="counter" data-target="1109">0</span>
+            <span class="counter" data-target="1198">0</span>
             <p>Perempuan</p>
         </div>
         <div class="counter-box">
@@ -157,7 +166,7 @@
             <p>Jumlah Kepala Keluarga</p>
         </div>
         <div class="counter-box">
-            <span class="counter" data-target="1198">0</span>
+            <span class="counter" data-target="1109">0</span>
             <p>Laki-laki</p>
         </div>
     </div>
@@ -183,10 +192,16 @@
       <i class="fas fa-school"></i>
       <p>Jenjang Pendidikan</p>
       <ul id="pendidikan" class="fasilitas-list">
-        <li><strong>Taman Kanak-Kanak:</strong> 
-          </br>TK Budi Luhur dan TK Mawar Putih 1</li>
+        <li><strong>Taman Kanak-Kanak dan PAUD:</strong> 
+          </br>TK Budi Luhur dan TK Mawar Putih 1
+           </br>PAUD Gemilang
+        </li>
+        <li><strong>Madrasah Ibtidaiyah Negeri dan Swasta:</strong> 
+          </br>MDA Al-Mursyidul Ummah, MIS Hidayatussibyan, dan MDA Al-Huda</li>
         <li><strong>Sekolah Dasar:</strong> 
           </br>SD Negeri Purwosari Baru 1 dan SD Negeri Purwosari Baru 2</li>
+          <li><strong>Sekolah Menengah Pertama/ MTSs:</strong> 
+          </br>SLTPN 2 Tamban dan SLTPN 5 Tamban</li>
         <li><strong>Sekolah Menengah Kejuruan:</strong> 
           </br>SMK Negeri 3 Marabahan</li>
       </ul>
@@ -195,10 +210,10 @@
     <!-- Keagamaan Islam -->
     <div class="fasilitas-item" onclick="toggleList('keagamaan')">
       <i class="fas fa-mosque"></i>
-      <p>Keagamaan</p>
+      <p>Fasilitas Keagamaan</p>
       <ul id="keagamaan" class="fasilitas-list">
-        <li><strong>Langgar:</strong> Langgar 1, Langgar 2</li>
-        <li><strong>Masjid:</strong> Masjid 1</li>
+        <li><strong>Mushalla:</strong> Miftahul Jannah, Nurul Hikmah, Jannatul Firdaus, Darul Falah, Nurul Hikmah, At Tarbiyah, dan Nurul Islam</li>
+        <li><strong>Masjid:</strong> Baitur Rahman, Al-Muhajirin, dan Al-Amin</li>
       </ul>
     </div>
 
@@ -207,7 +222,7 @@
       <i class="fas fa-clinic-medical"></i>
       <p>Layanan Kesehatan</p>
       <ul id="kesehatan" class="fasilitas-list">
-        <li><strong>Posyandu:</strong> Posyandu Mawar Putih</li>
+        <li><strong>Posyandu:</strong> Mawar Putih</li>
       </ul>
     </div>
 
@@ -294,6 +309,12 @@ function moveSlide(direction) {
 </script>
 
 </body>
+<script>
+  document.getElementById("menu-toggle").addEventListener("click", function() {
+    document.getElementById("nav-menu").classList.toggle("show");
+  });
+</script>
+
 <script>
   // Fungsi counter berjalan
   document.addEventListener("DOMContentLoaded", function () {
