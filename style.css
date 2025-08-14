@@ -36,7 +36,7 @@ header .logo p {
   margin: 0;
 }
 
-/* Navigation */
+/* Navigation (Desktop) */
 nav ul {
   list-style: none;
   display: flex;
@@ -59,39 +59,66 @@ nav ul li a:hover {
   color: #FFFFFF;
 }
 
-/* Hamburger Menu */
+/* Tombol Hamburger (Hidden di desktop) */
 .menu-toggle {
   display: none;
-  font-size: 22px;
-  cursor: pointer;
 }
 
-/* RESPONSIVE UNTUK HP */
+/* Responsive */
 @media (max-width: 768px) {
-  nav {
-    display: none;
-    width: 100%;
-    background-color: #8AA624;
-  }
-  nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-  }
-  nav ul li {
-    width: 100%;
-  }
-  nav ul li a {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-  }
+  /* Tombol hamburger */
   .menu-toggle {
     display: block;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
   }
-  nav.show {
+
+  /* Menu navigasi mobile */
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* sembunyi di luar layar */
+    width: 50%; /* penuh */
+    height: 100%;
+    background-color: rgba(251, 163, 28, 0.89); /* warna oranye dengan transparansi */
+    transition: right 0.3s ease;
+    z-index: 1000;
+    padding-top: 80px;
+}
+
+  nav ul {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 5px 0;
+  }
+
+  nav ul li a {
     display: block;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: transparent;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  nav ul li a:hover {
+    background-color: #FBA31C;
+    color: #fff;
+  }
+
+  /* Muncul saat toggle */
+  nav.show {
+    right: 0;
   }
 }
 
@@ -632,6 +659,7 @@ nav ul li a:hover {
     transition: transform 0.5s ease-in-out;
 }
 
+/* Desktop / default */
 .galeri-track img {
     flex: 0 0 auto;
     width: 300px;
@@ -667,14 +695,28 @@ nav ul li a:hover {
         padding: 40px 10px;
     }
 
+    /* Buat scroll horizontal di mobile */
+    .galeri-slider {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* smooth scroll di mobile */
+    }
+
     .galeri-track {
-        padding: 0 10px;
         gap: 10px;
+        padding: 0 10px;
+        flex-wrap: nowrap;
+        scroll-snap-type: x mandatory;
     }
 
     .galeri-track img {
         width: 250px;
         height: 160px;
+        scroll-snap-align: center;
+    }
+
+    /* Sembunyikan tombol navigasi di mobile */
+    .prev, .next {
+        display: none;
     }
 }
 
