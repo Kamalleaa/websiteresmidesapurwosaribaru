@@ -40,12 +40,12 @@
     <p>Kecamatan Tamban, Kabupaten Barito Kuala, Kalimantan Selatan</p>
   </div>
 
-  <!-- Hamburger Menu Button -->
+  <!-- Tombol Hamburger -->
   <div class="menu-toggle" id="menu-toggle">
     <i class="fas fa-bars"></i>
   </div>
 
-  <!-- Navigation Menu -->
+  <!-- Navigation -->
   <nav id="nav-menu">
     <ul>
       <li><a href="#welcome">Beranda</a></li>
@@ -267,77 +267,102 @@
         <p><em>Data Update Tahun 2025 l © KKN Kelompok 1 Komunikasi ULM 2025</em></p>
     </div>
 </footer>
-
-    <script>
+    
+<!-- ==== JAVASCRIPT ==== -->
+<script>
+// Toggle list fasilitas
 function toggleList(id) {
-    const list = document.getElementById(id);
-    const allLists = document.querySelectorAll('.fasilitas-list');
-    allLists.forEach(el => {
-        if (el !== list) el.style.display = "none"; // sembunyikan list lain
-    });
-    list.style.display = list.style.display === "block" ? "none" : "block";
+  const list = document.getElementById(id);
+  const allLists = document.querySelectorAll('.fasilitas-list');
+  allLists.forEach(el => {
+    if (el !== list) el.style.display = "none";
+  });
+  list.style.display = list.style.display === "block" ? "none" : "block";
 }
 
+// Slider galeri
 let slideIndex = 0;
 const track = document.querySelector('.galeri-track');
 const slides = document.querySelectorAll('.galeri-track img');
-const slideWidth = slides[0].clientWidth + 10; // plus margin
+const slideWidth = slides[0].clientWidth + 10;
 
 function moveSlide(direction) {
-    slideIndex += direction;
-    if (slideIndex < 0) slideIndex = 0;
-    if (slideIndex > slides.length - 3) slideIndex = slides.length - 3; // tampil 3 foto
-    track.style.transform = `translateX(${-slideIndex * slideWidth}px)`;
+  slideIndex += direction;
+  if (slideIndex < 0) slideIndex = 0;
+  if (slideIndex > slides.length - 3) slideIndex = slides.length - 3;
+  track.style.transform = `translateX(${-slideIndex * slideWidth}px)`;
 }
-</script>
-    
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // Jika hanya ingin animasi 1x, bisa unobserve
-        // observer.unobserve(entry.target);
+
+// Animasi scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Navigation
+const menuToggle = document.getElementById("menu-toggle");
+const navMenu = document.getElementById("nav-menu");
+const navLinks = document.querySelectorAll("#nav-menu ul li a");
+
+menuToggle.addEventListener("click", () => {
+  navMenu.classList.toggle("show");
+});
+
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("show");
+  });
+});
+
+// Counter
+document.addEventListener("DOMContentLoaded", function () {
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200;
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = Math.ceil(target / speed);
+      if (count < target) {
+        counter.innerText = count + increment;
+        setTimeout(updateCount, 10);
+      } else {
+        counter.innerText = target;
       }
-    });
-  }, {
-    threshold: 0.2 // hanya mulai saat 20% elemen masuk layar
+    };
+    updateCount();
   });
-
-  document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
-  });
+});
 </script>
 
+<!-- SCRIPT UNTUK COUNTER -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200; // kecepatan animasi
+
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = Math.ceil(target / speed);
+
+      if (count < target) {
+        counter.innerText = count + increment;
+        setTimeout(updateCount, 10);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCount();
+  });
+});
+</script>
 </body>
-<script>
-  document.getElementById("menu-toggle").addEventListener("click", function() {
-    document.getElementById("nav-menu").classList.toggle("show");
-  });
-</script>
-
-<script>
-  // Fungsi counter berjalan
-  document.addEventListener("DOMContentLoaded", function () {
-    const counters = document.querySelectorAll('.counter');
-    const speed = 200; // kecepatan animasi
-
-    counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
-        const increment = Math.ceil(target / speed);
-
-        if (count < target) {
-          counter.innerText = count + increment;
-          setTimeout(updateCount, 10);
-        } else {
-          counter.innerText = target;
-        }
-      };
-
-      updateCount();
-    });
-  });
-</script>
 </html>
